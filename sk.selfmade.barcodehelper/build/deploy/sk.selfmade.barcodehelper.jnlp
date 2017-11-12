@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="sk.selfmade.barcodehelper.jnlp">
+  <information>
+    <title>sk.selfmade.barcodehelper</title>
+    <vendor>sk.selfmade</vendor>
+    <description>Barcodehelper</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="sk.selfmade.barcodehelper.jar" size="9396" download="eager" />
+    <jar href="libs/controlsfx-8.40.10.jar" size="954085" download="eager" />
+    <jar href="libs/controlsfx-samples-8.40.10.jar" size="639701" download="eager" />
+    <jar href="libs/fxsampler-1.0.9.jar" size="30888" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="0" height="0" main-class="barcodehelper.MainApp"  name="Barcodehelper" />
+  <update check="background"/>
+</jnlp>
