@@ -62,6 +62,11 @@ public class MainController {
     		if(code != null && !code.isEmpty()) {
     			Product product = new Product();
     			
+    			if(code.startsWith("-")) {
+    				//vratene
+    				code = code.substring(1, code.length());
+    			}
+    			
     			if(code.indexOf('/') >= 0) {
     				print = true;
     				String[] codeParts = code.split("/");
@@ -94,6 +99,10 @@ public class MainController {
         		
         		scannedProducts.add(ean);
         		updateTable(product);
+        		
+        		if(print) {
+        			System.out.println("previous" + previousCount);
+        		}
     		}else {
     			throw new Exception("invalid input");
     		}
