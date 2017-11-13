@@ -1,7 +1,6 @@
 package barcodehelper.controller;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -61,9 +60,8 @@ public class MainController {
 	@FXML
 	private void initialize() {
 		print = false;
-		
 		productTable.setPlaceholder(new Label(""));
-		
+
 		textCode.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
@@ -134,7 +132,7 @@ public class MainController {
 			}
 
 			ean = code;
-
+			
 			String productName = productsList.get(ean);
 			if (productName != null) {
 				if (print) {
@@ -145,6 +143,7 @@ public class MainController {
 				product.setProductName(productName);
 				product.setProductQuantity(count);
 			} else {
+				textCode.setText("");
 				throw new Exception("missing product");
 			}
 
@@ -173,10 +172,6 @@ public class MainController {
 					String[] product = line.split(";");
 					productsList.put(product[0], product[1]);
 				}
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
 			} finally {
 				if (br != null) {
 					try {

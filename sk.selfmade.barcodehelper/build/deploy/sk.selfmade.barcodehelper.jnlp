@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="sk.selfmade.barcodehelper.jar" size="9396" download="eager" />
+    <jar href="sk.selfmade.barcodehelper.jar" size="9685" download="eager" />
     <jar href="libs/controlsfx-8.40.10.jar" size="954085" download="eager" />
     <jar href="libs/controlsfx-samples-8.40.10.jar" size="639701" download="eager" />
     <jar href="libs/fxsampler-1.0.9.jar" size="30888" download="eager" />

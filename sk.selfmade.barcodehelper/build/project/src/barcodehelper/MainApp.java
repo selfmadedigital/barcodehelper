@@ -1,13 +1,19 @@
 package barcodehelper;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import barcodehelper.controller.MainController;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class MainApp extends Application {
 
@@ -46,9 +52,16 @@ public class MainApp extends Application {
 			primaryStage.show();
 			
 			MainController controller = loader.getController();
-			controller.setProductsCsv(MainApp.class.getResource("resources/products.csv").getPath());
+			controller.setProductsCsv("/home/pi/Barcodehelper/build/project/src/barcodehelper/resources/products.csv");
 		} catch (IOException e) {
-			e.printStackTrace();
+			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.initOwner(primaryStage);
+            alert.initStyle(StageStyle.TRANSPARENT);
+            alert.initModality(Modality.WINDOW_MODAL);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                Platform.exit();
+            }
 		}
 	}
 
