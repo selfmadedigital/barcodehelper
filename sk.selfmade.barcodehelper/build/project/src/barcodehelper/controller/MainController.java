@@ -134,6 +134,7 @@ public class MainController {
 			ean = code;
 			
 			String productName = productsList.get(ean);
+			
 			if (productName != null) {
 				if (print) {
 					// previous count print
@@ -144,7 +145,7 @@ public class MainController {
 				product.setProductQuantity(count);
 			} else {
 				textCode.setText("");
-				throw new Exception("missing product");
+				throw new Exception("missing product " + ean);
 			}
 
 			scannedProducts.add(ean);
@@ -184,5 +185,9 @@ public class MainController {
 		} else {
 			throw new Exception("missing csv");
 		}
+	}
+	
+	public TextField getTextCode() {
+		return textCode;
 	}
 }

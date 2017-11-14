@@ -1,19 +1,16 @@
 package barcodehelper;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import barcodehelper.controller.MainController;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class MainApp extends Application {
 
@@ -52,16 +49,21 @@ public class MainApp extends Application {
 			primaryStage.show();
 			
 			MainController controller = loader.getController();
-			controller.setProductsCsv("/home/pi/Barcodehelper/build/project/src/barcodehelper/resources/products.csv");
+			controller.setProductsCsv("/home/pi/Barcodehelper/products.csv");
+			
+			scene.onKeyPressedProperty().bind(controller.getTextCode().onKeyPressedProperty());
+			scene.onKeyReleasedProperty().bind(controller.getTextCode().onKeyReleasedProperty());
+			
+			scene.addEventFilter(KeyEvent.KEY_PRESSED,
+	                event -> System.out.println("Pressed: " + event.getCode()));
 		} catch (IOException e) {
-			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.initOwner(primaryStage);
-            alert.initStyle(StageStyle.TRANSPARENT);
-            alert.initModality(Modality.WINDOW_MODAL);
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
-                Platform.exit();
-            }
+			System.out.println(e.getMessage());
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information Dialog");
+			alert.setHeaderText("Look, an Information Dialog");
+			alert.setContentText("I have a great message for you!");
+
+			alert.showAndWait();
 		}
 	}
 
